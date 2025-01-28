@@ -1,0 +1,26 @@
+{
+  "name": "movie-app",
+  "version": "1.0.0",
+  "description": "A movie application that displays a list of movies.",
+  "main": "src/index.jsx",
+  "scripts": {
+    "start": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "vite": "^4.0.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^2.0.0"
+  },
+  "keywords": [
+    "react",
+    "vite",
+    "movies"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}
