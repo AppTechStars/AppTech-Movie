@@ -198,3 +198,63 @@
     color: #ff6b6b;
   }
 }
+
+/* Movie popup styles */
+.movie-popup {
+  position: fixed;
+  padding-top: 20px;
+  top: 0px;
+  left: 0;
+  width: 100%;
+  height: 20%;
+  /* background: rgba(0, 0, 0, 0.8); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.movie-popup-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 600px;
+  width: 90%;
+  text-align: center;
+  position: relative;
+}
+
+.close-popup {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.popup-movie-poster {
+  width: 40%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.movie-popup h3 {
+  margin-top: 0;
+}
+
+.movie-popup button {
+  margin: 10px;
+  padding: 10px 20px;
+  border: none;
+  background: #007bff;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.movie-popup button:hover {
+  background: #0056b3;
+}
