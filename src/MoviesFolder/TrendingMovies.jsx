@@ -5,6 +5,8 @@ const TrendingMovies = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [hoveredMovie, setHoveredMovie] = useState(null);
+  const [movieDetails, setMovieDetails] = useState(null);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -25,6 +27,17 @@ const TrendingMovies = () => {
   
     fetchMovies();
   }, []);
+
+  const fetchMovieDetails = async (movieId) => {
+    const url = `https://api.themoviedb.org/3/movie/${movieId}?api_key=81766caf381ea0e22e41bc9eeba2d8bb&append_to_response=credits,videos`;
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      setMovieDetails(data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   if (loading) {
     return (
@@ -76,6 +89,14 @@ const TrendingMovies = () => {
             <div
               key={`${movie.id}-${index}`}
               className="movie-card"
+              onMouseEnter={() => {
+                setHoveredMovie(movie.id);
+                fetchMovieDetails(movie.id);
+              }}
+              onMouseLeave={() => {
+                setHoveredMovie(null);
+                setMovieDetails(null);
+              }}
             >
               <img
                 src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
@@ -93,6 +114,26 @@ const TrendingMovies = () => {
           ))}
         </div>
       </div>
+
+      {/* Full-Screen Popup */}
+      {hoveredMovie && movieDetails && (
+        <div className="movie-popup">
+          <div className="movie-popup-content">
+            <button className="close-popup" onClick={() => setHoveredMovie(null)}>X</button>
+            <img
+              src={`https://image.tmdb.org/t/p/original${movieDetails.poster_path}`}
+              alt={movieDetails.title}
+              className="popup-movie-poster"
+            />
+            <h3>{movieDetails.title}</h3>
+            <p>{movieDetails.overview}</p>
+            <p>Director: {movieDetails.credits.crew.find(member => member.job === 'Director').name}</p>
+            <p>Actors: {movieDetails.credits.cast.slice(0, 5).map(actor => actor.name).join(', ')}</p>
+            <button onClick={() => window.open(`https://www.youtube.com/watch?v=${movieDetails.videos.results[0].key}`, '_blank')}>Watch Trailer</button>
+            <button>Download</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
