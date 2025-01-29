@@ -1,18 +1,26 @@
 import './App.css';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HeroSection from './HeroSection/HeroSection';
 import TrendingMovies from './MoviesFolder/TrendingMovies';
 import Navbar from './Navbar/NavBar';
+import SearchResults from './MoviesFolder/SearchResults';
 
 function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <div className="app">
         <Navbar />
-        <HeroSection />
-        <TrendingMovies />
+        <Routes>
+          <Route path="/" element={
+            <>
+              <HeroSection />
+              <TrendingMovies />
+            </>
+          } />
+          <Route path="/search" element={<SearchResults />} />
+        </Routes>
       </div>
-    </BrowserRouter>
+    </Router>
   );
 }
 
