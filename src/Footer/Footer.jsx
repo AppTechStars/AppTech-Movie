@@ -38,8 +38,8 @@ const Footer = () => {
 
 // Styled Components
 const FooterContainer = styled.footer`
-    background-color: #a3ccfb;
-    color: white;
+    background-color:rgb(144, 194, 252);
+    color: black;
     padding: 20px 0;
     text-align: center;
 `;
@@ -79,7 +79,7 @@ const FooterLinks = styled.div`
 `;
 
 const FooterLink = styled.a`
-    color: white;
+    color: black;
     font-size: 1.5rem;
     transition: color 0.3s ease;
 
