@@ -4,7 +4,7 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
-  background-color: #f8f9fa;
+  background-color: #3d4b91;
 }
 
 /* Header styles */
@@ -234,13 +234,14 @@
 }
 
 .movie-popup-content {
-  background: rgb(255, 255, 255); /* Semi-transparent background */
+  background: #3d4b91; /* Semi-transparent background */
   padding: 20px;
   border-radius: 10px;
   max-width: 600px;
   width: 90%;
   text-align: center;
   position: relative;
+  color: #f3f3f3;
 }
 
 .close-popup {
@@ -268,14 +269,14 @@
   margin: 10px;
   padding: 10px 20px;
   border: none;
-  background: #007bff;
-  color: #fff;
+  background: #f51d28;
+  color: #0c0a0a;
   cursor: pointer;
   border-radius: 5px;
 }
 
 .movie-popup button:hover {
-  background: #000000;
+  background: #f07d90;
 }
 
 

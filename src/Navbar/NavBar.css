@@ -1,5 +1,5 @@
 .navbar {
-    background: #a3ccfb;
+    background: #a2d2ff;
     height: 80px;
     display: flex;
     justify-content: center;
@@ -23,7 +23,7 @@
   }
   
   .navbar-logo {
-    color: #007bff;
+    color: #d8e2ee;
     text-decoration: none;
     font-size: 2rem;
     display: flex;
@@ -38,7 +38,7 @@
   
   .menu-icon {
     display: none;
-    color: #007bff;
+    color: #ff0000;
     cursor: pointer;
     font-size: 1.8rem;
   }
@@ -95,7 +95,7 @@
       left: -100%;
       opacity: 0;
       transition: all 0.3s ease;
-      background: #a3ccfb;
+      background: #4963f1;
     }
   
     .nav-menu.active {
