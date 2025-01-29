@@ -203,7 +203,7 @@
 .movie-popup {
   position: fixed;
   padding-top: 20px;
-  top: 0px;
+  top: 300px; /* Adjust this value to move the popup lower */
   left: 0;
   width: 100%;
   height: 20%;
