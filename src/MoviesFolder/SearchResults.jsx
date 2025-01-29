@@ -62,9 +62,9 @@ const SearchResults = () => {
 // Styled Components
 const Container = styled.div`
   padding: 20px;
-  background-color: white;
+  background-color: #4e69c3;
   min-height: 100vh;
-  color: black;
+  color: white;
 `;
 
 const Header = styled.div`
@@ -76,20 +76,20 @@ const Header = styled.div`
   h1 {
     font-size: 1.8rem;
     span {
-      color: #007bff;
+      color:rgb(247, 34, 34);
     }
   }
 
   a {
     text-decoration: none;
     color: white;
-    background: #007bff;
+    background:rgb(231, 1, 1);
     padding: 10px 15px;
     border-radius: 5px;
     transition: 0.2s;
     
     &:hover {
-      background: #0056b3;
+      background:rgb(245, 135, 135);
     }
   }
 `;
