@@ -7,6 +7,7 @@ const MovieHub = () => {
   return (
     <div className="movie-hub">
       <nav className="nav-bar">
+        <div className='logo' ></div>
         <div className="nav-title">App Tech Stars Movie Hub</div>
         <div className="nav-links">
           <span>Home</span>

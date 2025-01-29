@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Anton&display=swap');
 /* Navigation Bar Styles */
 .movie-hub {
     max-width: 1200px;
@@ -8,22 +9,23 @@
 .nav-bar {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    padding: 10px 0;
-    border-bottom: 2px solid #343536;
-    margin-bottom: 30px;
-    background-color: white;
-    min-height: 60px;
+    align-items: center;
+    padding: 20px 5%;
+    background: #281a9e;
+   
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .nav-title {
-    font-size: 24px;
-    font-weight: bold;
-    color: #1a1a1a;
-    margin-top: 0;
-    padding-top: 0;
-    margin-right: 300px;
-    /* App Tech Stars Movie Hub text */
+    display: inline-block;
+    font-size: 32px;
+    font-family: 'Anton', sans-serif;
+    text-transform: uppercase;
+    background: linear-gradient(to right, #eb0808, rgb(191, 236, 206));
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    transform: skew(-10deg);
 }
 
 .nav-links {
@@ -37,7 +39,7 @@
 
 .nav-links span {
     font-size: 16px;
-    color: #4a4a4a;
+    color:white;
     cursor: pointer;
     padding: 5px 10px;
     border-radius: 4px;
@@ -45,7 +47,7 @@
 }
 
 .nav-links span:hover {
-    background-color: #f5f5f5;
+    background-color: #ec0a0a;
     color: #000;
 }
 
