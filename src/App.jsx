@@ -4,6 +4,7 @@ import HeroSection from './HeroSection/HeroSection';
 import TrendingMovies from './MoviesFolder/TrendingMovies';
 import Navbar from './Navbar/NavBar';
 import SearchResults from './MoviesFolder/SearchResults';
+import Footer from './Footer/Footer';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
             <>
               <HeroSection />
               <TrendingMovies />
+              <Footer/>
             </>
           } />
           <Route path="/search" element={<SearchResults />} />
