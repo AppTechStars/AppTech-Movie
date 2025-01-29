@@ -1,7 +1,7 @@
 import './App.css'
-import './NavBar.css'
+import HeroSection from './HeroSection/HeroSection'
 import TrendingMovies from './MoviesFolder/TrendingMovies'
-import Navbar from './NavBar'
+import Navbar from './Navbar/NavBar'
 
 
 function App() {
@@ -9,6 +9,7 @@ function App() {
   return (
     <>
       <Navbar/>
+      <HeroSection/>
       <TrendingMovies/>
     </>
     

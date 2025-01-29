@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Search } from 'lucide-react';
+import './NavBar.css';
 
 const MovieHub = () => {
   const [searchTerm, setSearchTerm] = useState('');
