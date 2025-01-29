@@ -1,5 +1,5 @@
 .navbar {
-  background: #3692b6;
+  background: #0a645d;
   height: 80px;
   display: flex;
   justify-content: center;
@@ -20,6 +20,7 @@
   width: 100%;
   padding: 0 50px;
   margin: 0 auto;
+  z-index: 1;
 }
 
 .navbar-logo {
