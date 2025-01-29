@@ -55,6 +55,12 @@
   margin-bottom: 0.5rem;
 }
 
+.featured-movie-details {
+    display: flex; /* Added display: flex */
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
 /* Movie carousel section */
 .movie-carousel {
   position: relative;
@@ -291,3 +297,4 @@
     flex-direction: column;
     gap: 0.5rem;
   }
+}
