@@ -1,19 +1,19 @@
-import './App.css'
-import HeroSection from './HeroSection/HeroSection'
-import TrendingMovies from './MoviesFolder/TrendingMovies'
-import Navbar from './Navbar/NavBar'
-
+import './App.css';
+import { BrowserRouter } from 'react-router-dom';
+import HeroSection from './HeroSection/HeroSection';
+import TrendingMovies from './MoviesFolder/TrendingMovies';
+import Navbar from './Navbar/NavBar';
 
 function App() {
-
   return (
-    <>
-      <Navbar/>
-      <HeroSection/>
-      <TrendingMovies/>
-    </>
-    
-  )
+    <BrowserRouter>
+      <div className="app">
+        <Navbar />
+        <HeroSection />
+        <TrendingMovies />
+      </div>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
