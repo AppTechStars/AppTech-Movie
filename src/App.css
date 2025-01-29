@@ -13,3 +13,9 @@ body {
   overflow-x: hidden;
   background-color: white;
 }
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
