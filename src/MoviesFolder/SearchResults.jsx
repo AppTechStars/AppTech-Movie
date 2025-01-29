@@ -108,7 +108,7 @@ const MovieGrid = styled.div`
 `;
 
 const MovieCard = styled.div`
-  background: lightgray;
+  background: black;
   padding: 10px;
   border-radius: 8px;
   text-align: center;
