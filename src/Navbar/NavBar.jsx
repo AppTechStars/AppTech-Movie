@@ -20,7 +20,7 @@ const Navbar = () => {
             className="navbar-image"
           />
         </Link>
-      
+
         <div className="menu-icon" onClick={handleClick}>
           <FontAwesomeIcon icon={click ? faTimes : faBars} />
         </div>
