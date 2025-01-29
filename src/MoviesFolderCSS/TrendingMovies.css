@@ -118,6 +118,18 @@
   animation-play-state: paused;
 }
 
+/* Add this to the existing CSS */
+
+/* Animation pause on hover */
+.movie-scroll.paused {
+  animation-play-state: paused;
+}
+
+/* Animation pause on hover */
+.movie-carousel.paused .movie-scroll {
+  animation-play-state: paused;
+}
+
 /* Loading state */
 .loading {
   width: 100%;
@@ -215,7 +227,7 @@
 }
 
 .movie-popup-content {
-  background: #fff;
+  background: rgb(255, 255, 255); /* Semi-transparent background */
   padding: 20px;
   border-radius: 10px;
   max-width: 600px;
@@ -256,5 +268,5 @@
 }
 
 .movie-popup button:hover {
-  background: #0056b3;
+  background: #000000;
 }

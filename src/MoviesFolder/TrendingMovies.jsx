@@ -80,23 +80,19 @@ const TrendingMovies = () => {
       )}
 
       {/* Movie Carousel */}
-      <div className="movie-carousel">
+      <div className={`movie-carousel ${hoveredMovie ? 'paused' : ''}`}>
         <div 
           className="movie-scroll"
           style={{ '--movie-count': movies.length }}
         >
           {[...movies, ...movies].map((movie, index) => (
             <div
-              key={`${movie.id}-${index}`}
-              className="movie-card"
-              onMouseEnter={() => {
-                setHoveredMovie(movie.id);
-                fetchMovieDetails(movie.id);
-              }}
-              onMouseLeave={() => {
-                setHoveredMovie(null);
-                setMovieDetails(null);
-              }}
+            key={`${movie.id}-${index}`}
+            className="movie-card"
+            onClick={() => {
+              setHoveredMovie(movie);
+              fetchMovieDetails(movie.id);
+            }}
             >
               <img
                 src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
