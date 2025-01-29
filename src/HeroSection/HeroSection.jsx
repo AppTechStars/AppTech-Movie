@@ -95,7 +95,7 @@ const SearchBox = styled.div`
   button {
     padding: 12px 20px;
     font-size: 1rem;
-    background: black;
+    background: red;
     color: white;
     border: none;
     border-radius: 5px;
