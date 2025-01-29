@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Search } from "lucide-react";
-import backgroundImage from '../assets/SpiderVerse-HeroSection.jpeg';
+import backgroundImage from '../assets/hero-image.jpg';
 
 const HeroSection = () => {
     const [searchTerm, setSearchTerm] = useState("");
