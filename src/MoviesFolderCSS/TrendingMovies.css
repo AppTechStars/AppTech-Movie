@@ -4,7 +4,7 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
-  background-color: #f8f9fa;
+  background-color: #81283b;
 }
 
 /* Header styles */
@@ -270,4 +270,25 @@
 
 .movie-popup button:hover {
   background: #000000;
+}
+
+
+/* Responsive updates */
+@media (max-width: 768px) {
+  .featured-movie {
+    height: 400px;
+  }
+
+  .featured-movie-title {
+    font-size: 2rem;
+  }
+
+  .featured-movie-overview {
+    font-size: 1rem;
+  }
+
+  .featured-movie-details {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 }
