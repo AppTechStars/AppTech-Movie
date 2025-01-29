@@ -15,20 +15,7 @@ const MovieHub = () => {
         </div>
       </nav>
 
-      <div className="search-section">
-        <div className="search-container">
-          <input
-            type="text"
-            placeholder="Search movies..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="search-input"
-          />
-          <button className="search-button">
-            <Search />
-          </button>
-        </div>
-      </div>
+      
     </div>
   );
 };
