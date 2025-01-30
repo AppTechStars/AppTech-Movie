@@ -93,7 +93,7 @@ const SearchResults = () => {
                         <h3>{movieDetails.title}</h3>
                         <p>{movieDetails.overview}</p>
                         <p>Director: {movieDetails.credits.crew.find(member => member.job === 'Director').name}</p>
-                        <p>Actors: {movieDetails.credits.cast.slice(0, 5).map(actor => actor.name).join(', ')}</p>
+                        <p>Cast: {movieDetails.credits.cast.slice(0, 5).map(actor => actor.name).join(', ')}</p>
                         <button onClick={() => window.open(`https://www.youtube.com/watch?v=${movieDetails.videos.results[0].key}`, '_blank')}>Watch Trailer</button>
                         <button onClick={() => window.open(`https://api.example.com/download?videoId=${movieDetails.videos.results[0].key}`, '_blank')}>Download</button>
                     </div>
