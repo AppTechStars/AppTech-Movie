@@ -81,7 +81,7 @@
 }
 
 .nav-links:hover {
-  border-bottom: 4px solid #fff;
+  border-bottom: 4px solid #f1efef;
 }
 
 @media screen and (max-width: 960px) {
