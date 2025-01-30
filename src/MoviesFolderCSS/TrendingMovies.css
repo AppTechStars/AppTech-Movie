@@ -104,7 +104,7 @@
   font-weight: 500;
   text-align: center;
   margin: 0;
-  color: #622db8;
+  color: #6f24e9;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -234,7 +234,7 @@
 }
 
 .movie-popup-content {
-  background: #3d4b91; /* Semi-transparent background */
+  background: #3378c7; /* Semi-transparent background */
   padding: 20px;
   border-radius: 10px;
   max-width: 600px;
