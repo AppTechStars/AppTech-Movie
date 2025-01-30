@@ -21,6 +21,7 @@ const Navbar = () => {
           />
         </Link>
 
+
         <div className="navbar-text">
           AppTech Stars Movie Hub
         </div>
