@@ -84,7 +84,7 @@ const FooterLink = styled.a`
     transition: color 0.3s ease;
 
     &:hover {
-        color: #007bff;
+        color:rgb(12, 250, 71);
     }
 `;
 
