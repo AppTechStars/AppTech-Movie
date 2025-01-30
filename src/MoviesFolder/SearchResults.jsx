@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link, useLocation } from 'react-router-dom';
+import HeroSearchSection from '../HeroSection/HeroSearchSection';
 
 const API_KEY = "81766caf381ea0e22e41bc9eeba2d8bb";
 
@@ -53,15 +54,8 @@ const SearchResults = () => {
 
     return (
         <Container>
-            <SearchBox>
-                <input
-                    type="text"
-                    placeholder="Search movies..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                />
-                <button onClick={handleSearch}>Search</button>
-            </SearchBox>
+          <HeroSearchSection />
+            
             <Header>
                 <h1>Search Results for: <span>{initialQuery}</span></h1>
                 <Link to="/">Go Back</Link>
