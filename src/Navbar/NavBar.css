@@ -1,5 +1,5 @@
 .navbar {
-  background: #92d4ff;
+  background: #924feb;
   height: 80px;
   display: flex;
   justify-content: center;
@@ -24,7 +24,7 @@
 }
 
 .navbar-logo {
-  color: #fff;
+  color: white;
   text-decoration: none;
   font-size: 2rem;
   display: flex;
