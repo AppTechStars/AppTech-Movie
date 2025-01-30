@@ -74,9 +74,14 @@ const SearchResults = () => {
                             src={movie.poster_path 
                                 ? `https://image.tmdb.org/t/p/w300${movie.poster_path}` 
                                 : "https://via.placeholder.com/200x300"}
-                            alt={movie.title}
+                            alt={movie.title}  
+                            
                         />
-                        <MovieTitle>{movie.title}</MovieTitle>
+                        <div >
+                <p className="movie-name">{movie.title}</p>
+                <p className="movie-rating">{movie.release_date}</p>
+              </div>
+                      
                     </MovieCard>
                 ))}
             </MovieGrid>
