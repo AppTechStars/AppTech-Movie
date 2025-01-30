@@ -109,3 +109,5 @@ const SearchBox = styled.div`
 `;
 
 export default HeroSection;
+
+

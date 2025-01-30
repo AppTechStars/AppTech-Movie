@@ -38,7 +38,7 @@ const Footer = () => {
 
 // Styled Components
 const FooterContainer = styled.footer`
-    background-color: #a3ccfb;
+    background-color:#924feb;
     color: white;
     padding: 20px 0;
     text-align: center;

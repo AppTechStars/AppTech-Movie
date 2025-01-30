@@ -21,6 +21,10 @@ const Navbar = () => {
           />
         </Link>
 
+        <div className="navbar-text">
+          AppTech Stars Movie Hub
+        </div>
+
         <div className="menu-icon" onClick={handleClick}>
           <FontAwesomeIcon icon={click ? faTimes : faBars} />
         </div>
