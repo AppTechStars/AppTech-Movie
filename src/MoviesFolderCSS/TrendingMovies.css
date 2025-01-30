@@ -241,7 +241,7 @@
   width: 90%;
   text-align: center;
   position: relative;
-  color: #f3f3f3;
+  color: #97edf0;
 }
 
 .close-popup {
@@ -269,7 +269,7 @@
   margin: 10px;
   padding: 10px 20px;
   border: none;
-  background: #f51d28;
+  background: #d6232c;
   color: #0c0a0a;
   cursor: pointer;
   border-radius: 5px;
