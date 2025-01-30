@@ -126,22 +126,8 @@ const TrendingMovies = () => {
             <p>{movieDetails.overview}</p>
             <p>Director: {movieDetails.credits.crew.find(member => member.job === 'Director').name}</p>
             <p>Actors: {movieDetails.credits.cast.slice(0, 5).map(actor => actor.name).join(', ')}</p>
-            <button onClick={() => setShowTrailer(true)}>Watch Trailer</button>
-            {showTrailer && (
-              <div className="trailer-container">
-                <button className="close-trailer" onClick={() => setShowTrailer(false)}>X</button>
-                <iframe
-                  width="560"
-                  height="315"
-                  src={`https://www.youtube.com/embed/${movieDetails.videos.results[0].key}`}
-                  title={movieDetails.title}
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
-              </div>
-            )}
-            <button>Download</button>
+            <button onClick={() => window.open(`https://www.youtube.com/watch?v=${movieDetails.videos.results[0].key}`, '_blank')}>Watch Trailer</button>
+            <button onClick={() => window.open(`https://api.example.com/download?videoId=${movieDetails.videos.results[0].key}`, '_blank')}>Download</button>
           </div>
         </div>
       )}
