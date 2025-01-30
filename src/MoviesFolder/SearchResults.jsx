@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import HeroSection from '../HeroSection/HeroSearchSection';
 
 const API_KEY = "81766caf381ea0e22e41bc9eeba2d8bb";
 
@@ -34,6 +35,7 @@ const SearchResults = () => {
 
     return (
         <Container>
+          <HeroSection/>
             <Header>
                 <h1>Search Results for: <span>{query}</span></h1>
                 <Link to="/">Go Back</Link>
