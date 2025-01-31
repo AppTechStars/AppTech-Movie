@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Search } from "lucide-react";
-import backgroundImage from '../assets/hero-image.jpg';
+
 
 const HeroSection = () => {
     const [searchTerm, setSearchTerm] = useState("");
@@ -27,6 +27,7 @@ const HeroSection = () => {
             navigate(`/search?query=${encodeURIComponent(searchTerm)}`);
         }
     };
+
     const handleKeyPress = (e) => {
       if (e.key === 'Enter') {
           handleSearch();
@@ -34,21 +35,36 @@ const HeroSection = () => {
   };
     return (
         <HeroContainer>
+             <VideoBackground
+                ref={videoRef}
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="auto"
+            >
+                <source src="/Spiderverse-Video.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+            </VideoBackground>
+
+            <Overlay /> {/* Added overlay to improve text visibility */}
+
             <Content>
                 <Title>
                     <Highlight>AppTech Movies</Highlight> <Moving>Your Gateway to Cinematic Adventures.</Moving>
                 </Title>
 
                 <SearchBox>
-                    <input
-                        type="text"
-                        placeholder="Search movies..."
+                     <input
+                       type="text"
+                    placeholder="Search movies..."
                         value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                    />
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                  onKeyPress={handleKeyPress}
+                     />
                     <button onClick={handleSearch}>
-                        <Search />
-                    </button>
+                     <Search />
+                   </button>
                 </SearchBox>
             </Content>
         </HeroContainer>
