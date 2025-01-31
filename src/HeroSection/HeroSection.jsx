@@ -2,69 +2,35 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Search } from "lucide-react";
-
+import backgroundImage from '../assets/hero-image.jpg';
 
 const HeroSection = () => {
     const [searchTerm, setSearchTerm] = useState("");
-    const videoRef = useRef(null);
     const navigate = useNavigate();
 
-
-    useEffect(() => {
-      if (videoRef.current) {
-        const playVideo = async () => {
-            try {
-                await videoRef.current.play();
-            } catch (error) {
-                console.error("Video autoplay failed:", error);
-            }
-        };
-        playVideo();
-    }
-    }, []);
     const handleSearch = () => {
         if (searchTerm.trim()) {
             navigate(`/search?query=${encodeURIComponent(searchTerm)}`);
         }
     };
 
-    const handleKeyPress = (e) => {
-      if (e.key === 'Enter') {
-          handleSearch();
-      }
-  };
     return (
         <HeroContainer>
-             <VideoBackground
-                ref={videoRef}
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="auto"
-            >
-                <source src="/garfield.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-            </VideoBackground>
-
-            <Overlay /> {/* Added overlay to improve text visibility */}
-
             <Content>
                 <Title>
                     <Highlight>AppTech Movies</Highlight> <Moving>Your Gateway to Cinematic Adventures.</Moving>
                 </Title>
 
                 <SearchBox>
-                     <input
-                       type="text"
-                    placeholder="Search movies..."
+                    <input
+                        type="text"
+                        placeholder="Search movies..."
                         value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                  onKeyPress={handleKeyPress}
-                     />
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
                     <button onClick={handleSearch}>
-                     <Search />
-                   </button>
+                        <Search />
+                    </button>
                 </SearchBox>
             </Content>
         </HeroContainer>
@@ -73,39 +39,15 @@ const HeroSection = () => {
 
 // Styled Components
 const HeroContainer = styled.div`
-   min-height: 60vh;
+  min-height: 60vh;
   padding: 120px 20px;
-  position: relative;
+  background-image: url(${backgroundImage});
+  background-size: cover;
+  background-position: center;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
-  overflow: hidden; /* Prevent video from spilling out */
-`;
-
-
-const VideoBackground = styled.video`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  object-fit: cover;
-  z-index: 0;
-`;
-
-
-const Overlay = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
-  z-index: 1;
 `;
 
 const Content = styled.div`
@@ -167,5 +109,3 @@ const SearchBox = styled.div`
 `;
 
 export default HeroSection;
-
-
