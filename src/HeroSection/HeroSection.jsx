@@ -27,7 +27,11 @@ const HeroSection = () => {
             navigate(`/search?query=${encodeURIComponent(searchTerm)}`);
         }
     };
-
+    const handleKeyPress = (e) => {
+      if (e.key === 'Enter') {
+          handleSearch();
+      }
+  };
     return (
         <HeroContainer>
             <Content>
