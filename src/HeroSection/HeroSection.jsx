@@ -43,7 +43,7 @@ const HeroSection = () => {
                 playsInline
                 preload="auto"
             >
-                <source src="/Spiderverse-Video.mp4" type="video/mp4" />
+                <source src="/garfield.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
             </VideoBackground>
 
