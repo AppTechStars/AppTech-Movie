@@ -73,16 +73,16 @@ const HeroSection = () => {
 
 // Styled Components
 const HeroContainer = styled.div`
-  min-height: 60vh;
+   min-height: 60vh;
   padding: 120px 20px;
-  background-image: url(${backgroundImage});
-  background-size: cover;
-  background-position: center;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
+  overflow: hidden; /* Prevent video from spilling out */
 `;
+
 
 const Content = styled.div`
   text-align: center;
