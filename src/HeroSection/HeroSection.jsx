@@ -6,8 +6,22 @@ import backgroundImage from '../assets/hero-image.jpg';
 
 const HeroSection = () => {
     const [searchTerm, setSearchTerm] = useState("");
+    const videoRef = useRef(null);
     const navigate = useNavigate();
 
+
+    useEffect(() => {
+      if (videoRef.current) {
+        const playVideo = async () => {
+            try {
+                await videoRef.current.play();
+            } catch (error) {
+                console.error("Video autoplay failed:", error);
+            }
+        };
+        playVideo();
+    }
+    }, []);
     const handleSearch = () => {
         if (searchTerm.trim()) {
             navigate(`/search?query=${encodeURIComponent(searchTerm)}`);
