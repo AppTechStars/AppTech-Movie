@@ -89,7 +89,7 @@ https://api.themoviedb.org/3/search/movie?api_key=YOUR_API_KEY&query=search_term
 - 🎭 Dark/Light theme toggle.
 
 ## 👨‍💻 Author
-- **Your Name** – [GitHub](https://github.com/your-username)
+- **AppTech Stars** – [GitHub](https://github.com/your-username)
 
 ## 📜 License
 This project is **MIT Licensed**.
