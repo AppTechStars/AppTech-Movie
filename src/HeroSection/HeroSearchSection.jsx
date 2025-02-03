@@ -22,6 +22,7 @@ const HeroSearchSection = () => {
         }
     }, []);
 
+    
     const handleSearch = () => {
         if (searchTerm.trim()) {
             navigate(`/search?query=${encodeURIComponent(searchTerm)}`);
