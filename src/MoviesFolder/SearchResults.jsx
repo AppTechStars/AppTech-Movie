@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link, useLocation } from 'react-router-dom';
 import HeroSearchSection from '../HeroSection/HeroSearchSection';
 
+
 const API_KEY = "81766caf381ea0e22e41bc9eeba2d8bb";
 
 const useQuery = () => {
