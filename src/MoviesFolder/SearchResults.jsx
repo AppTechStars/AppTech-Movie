@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link, useLocation } from 'react-router-dom';
+import Footer from '../Footer/Footer';
 import HeroSearchSection from '../HeroSection/HeroSearchSection';
 
 const API_KEY = "81766caf381ea0e22e41bc9eeba2d8bb";
@@ -104,6 +105,7 @@ const SearchResults = () => {
                     </div>
                 </div>
             )}
+             <Footer/>
         </Container>
     );
 };
