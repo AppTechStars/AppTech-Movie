@@ -105,6 +105,7 @@ const SearchResults = () => {
                     </div>
                 </div>
             )}
+            <br />
              <Footer/>
         </Container>
     );
@@ -117,7 +118,13 @@ const Container = styled.div`
   min-height: 100vh;
   color: white;
 `;
-
+const FooterContainer = styled.footer`
+    background-color:#924feb;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    
+`;
 const SearchBox = styled.div`
   display: flex;
   justify-content: center;
