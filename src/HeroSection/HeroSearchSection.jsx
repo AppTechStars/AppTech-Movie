@@ -3,10 +3,13 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Search } from "lucide-react";
 
+
 const HeroSearchSection = () => {
     const [searchTerm, setSearchTerm] = useState("");
+  
     const videoRef = useRef(null);
     const navigate = useNavigate();
+    const searchResultsRef = useRef(null);
 
     useEffect(() => {
         // Attempt to play video when component mounts
@@ -26,6 +29,12 @@ const HeroSearchSection = () => {
     const handleSearch = () => {
         if (searchTerm.trim()) {
             navigate(`/search?query=${encodeURIComponent(searchTerm)}`);
+         
+        }
+
+        // Scroll to search results
+        if (searchResultsRef.current) {
+            searchResultsRef.current.scrollIntoView({ behavior: 'smooth' });
         }
     };
 
@@ -68,7 +77,11 @@ const HeroSearchSection = () => {
                         <Search />
                     </button>
                 </SearchBox>
+             
             </Content>
+            <div ref={searchResultsRef}>
+                {/* Search results */}
+            </div>
         </HeroContainer>
     );
 };
