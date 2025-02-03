@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link, useLocation } from 'react-router-dom';
+import Footer from '../Footer/Footer';
 import HeroSearchSection from '../HeroSection/HeroSearchSection';
 
 
@@ -105,6 +106,8 @@ const SearchResults = () => {
                     </div>
                 </div>
             )}
+            <br />
+             <Footer/>
         </Container>
     );
 };
@@ -116,7 +119,13 @@ const Container = styled.div`
   min-height: 100vh;
   color: white;
 `;
-
+const FooterContainer = styled.footer`
+    background-color:#924feb;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    
+`;
 const SearchBox = styled.div`
   display: flex;
   justify-content: center;

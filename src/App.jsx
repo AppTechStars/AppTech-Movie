@@ -22,6 +22,7 @@ function App() {
             </>
           } />
           <Route path="/search" element={<SearchResults />} />
+          
         </Routes>
       </div>
 
