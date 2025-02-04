@@ -49,7 +49,7 @@ const MenuIcon = styled.div`
   display: none;
   color:rgb(252, 14, 14);
   cursor: pointer;
-  font-size: 1.8rem;
+  font-size: 1.9rem;
 
   @media screen and (max-width: 960px) {
     display: block;
