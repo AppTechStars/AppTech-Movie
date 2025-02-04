@@ -61,7 +61,7 @@ const MenuIcon = styled.div`
 `;
 
 const NavText = styled.div`
-  color: #fff;
+  color: white;
   font-size: 1.5rem;
   display: flex;
   align-items: center;
