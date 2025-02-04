@@ -7,7 +7,7 @@ import styled from 'styled-components';
 // Styled Components
 const NavbarContainer = styled.nav`
   background:rgb(149, 80, 238);
-  height: 75px;
+  height: 74px;
   display: flex;
   justify-content: center;
   align-items: center;
