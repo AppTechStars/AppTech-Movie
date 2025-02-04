@@ -6,8 +6,8 @@ import styled from 'styled-components';
 
 // Styled Components
 const NavbarContainer = styled.nav`
-  background: #924feb;
-  height: 75px;
+  background:rgb(149, 80, 238);
+  height: 74px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,7 +15,7 @@ const NavbarContainer = styled.nav`
   position: sticky;
   top: 0;
   z-index: 999;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(8, 8, 8, 0.1);
 `;
 
 const NavbarWrapper = styled.div`
@@ -47,9 +47,9 @@ const LogoImage = styled.img`
 
 const MenuIcon = styled.div`
   display: none;
-  color: #ff0000;
+  color:rgb(252, 14, 14);
   cursor: pointer;
-  font-size: 1.8rem;
+  font-size: 1.9rem;
 
   @media screen and (max-width: 960px) {
     display: block;
@@ -61,8 +61,8 @@ const MenuIcon = styled.div`
 `;
 
 const NavText = styled.div`
-  color: #fff;
-  font-size: 1.5rem;
+  color: white;
+  font-size: 1.6rem;
   display: flex;
   align-items: center;
   margin-left: 20px;
