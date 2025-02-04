@@ -15,7 +15,7 @@ const NavbarContainer = styled.nav`
   position: sticky;
   top: 0;
   z-index: 999;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(8, 8, 8, 0.1);
 `;
 
 const NavbarWrapper = styled.div`
