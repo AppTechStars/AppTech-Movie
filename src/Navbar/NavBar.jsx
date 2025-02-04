@@ -47,7 +47,7 @@ const LogoImage = styled.img`
 
 const MenuIcon = styled.div`
   display: none;
-  color: #ff0000;
+  color:rgb(252, 14, 14);
   cursor: pointer;
   font-size: 1.8rem;
 
