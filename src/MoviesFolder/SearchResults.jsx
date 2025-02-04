@@ -121,7 +121,7 @@ const Container = styled.div`
 `;
 const FooterContainer = styled.footer`
     background-color:#924feb;
-    color: white;
+    color: black;
     padding: 20px 0;
     text-align: center;
     
