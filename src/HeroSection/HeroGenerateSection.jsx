@@ -11,6 +11,8 @@ const HeroGenerateSection = () => {
     const genreId = query.get('genreId');
     const initialQuery = query.get('query') || '';
     const [searchTerm, setSearchTerm] = useState(initialQuery);
+    const [selectedGenre, setSelectedGenre] = useState(genreId || '');
+    const [genres, setGenres] = useState([]);
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -21,23 +23,28 @@ const HeroGenerateSection = () => {
     const searchResultsRef = useRef(null);
 
     useEffect(() => {
-        const fetchGenreName = async () => {
-            if (genreId) {
-                try {
-                    const response = await fetch(
-                        `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=en-US`
-                    );
-                    const data = await response.json();
+        // Fetch genres list
+        const fetchGenres = async () => {
+            try {
+                const response = await fetch(
+                    `https://api.themoviedb.org/3/genre/movie/list?language=en-US&api_key=${API_KEY}`
+                );
+                const data = await response.json();
+                setGenres(data.genres);
+                
+                if (genreId) {
                     const genre = data.genres.find(g => g.id.toString() === genreId);
                     if (genre) {
                         setGenreName(genre.name);
-                        setSearchTerm(genre.name); // Set the search term to the genre name
+                        setSelectedGenre(genre.id.toString());
                     }
-                } catch (err) {
-                    console.error("Failed to fetch genre name:", err);
                 }
+            } catch (err) {
+                console.error("Failed to fetch genres:", err);
+                setError("Failed to fetch genres. Please try again.");
             }
         };
+        
 
         const playVideo = async () => {
             if (videoRef.current) {
@@ -71,13 +78,15 @@ const HeroGenerateSection = () => {
         };
 
         playVideo();
-        fetchGenreName();
+        fetchGenres();
         fetchMovies();
     }, [initialQuery, genreId]);
 
     const handleSearch = () => {
         if (searchTerm.trim()) {
             navigate(`/search?query=${encodeURIComponent(searchTerm)}`);
+        } else if (selectedGenre) {
+            navigate(`/genre?genreId=${selectedGenre}`);
         }
 
         if (searchResultsRef.current) {
@@ -125,11 +134,22 @@ const HeroGenerateSection = () => {
                         onChange={(e) => setSearchTerm(e.target.value)}
                         onKeyPress={handleKeyPress}
                     />
+                    <select 
+                        value={selectedGenre} 
+                        onChange={(e) => setSelectedGenre(e.target.value)}
+                    >
+                        <option value="">Select Genre</option>
+                        {genres.map((genre) => (
+                            <option key={genre.id} value={genre.id}>
+                                {genre.name}
+                            </option>
+                        ))}
+                    </select>
                     <button onClick={handleSearch}>
                         <Search />
                     </button>
                 </SearchBox>
-                <h2>Scroll Down to View Genre</h2>
+                <h2>Scroll Down to View Movies</h2>
             </Content>
         </HeroContainer>
     );
@@ -143,7 +163,7 @@ const HeroContainer = styled.div`
   align-items: center;
   justify-content: center;
   color: white;
-  overflow: hidden; /* Prevent video from spilling out */
+  overflow: hidden;
 `;
 
 const VideoBackground = styled.video`
@@ -165,7 +185,7 @@ const Overlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+  background: rgba(0, 0, 0, 0.5);
   z-index: 1;
 `;
 
@@ -175,23 +195,8 @@ const Content = styled.div`
   max-width: 800px;
   width: 100%;
   margin: 0 auto;
-  z-index: 2; /* Ensure content is above overlay */
+  z-index: 2;
   position: relative;
-`;
-
-const Title = styled.h1`
-  font-size: clamp(2rem, 5vw, 3rem);
-  line-height: 1.2;
-  margin-bottom: 2rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Improve text readability */
-`;
-
-const Highlight = styled.span`
-  color: #007bff;
-`;
-
-const Moving = styled.span`
-  color: white;
 `;
 
 const SearchBox = styled.div`
@@ -207,6 +212,21 @@ const SearchBox = styled.div`
     border: 1px solid #ccc;
     border-radius: 5px;
     
+    &:focus {
+      outline: none;
+      border-color: #007bff;
+      box-shadow: 0 0 2px rgba(0, 123, 255, 0.5);
+    }
+  }
+
+  select {
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: white;
+    min-width: 150px;
+
     &:focus {
       outline: none;
       border-color: #007bff;
