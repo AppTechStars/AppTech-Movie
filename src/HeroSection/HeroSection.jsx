@@ -2,62 +2,46 @@ import React, { useRef, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Search } from "lucide-react";
-import garfieldVideo from '/public/cinema.mp4'; // Import the video file
 
 const HeroSection = () => {
-    const [searchTerm, setSearchTerm] = useState("");
-    const [selectedGenre, setSelectedGenre] = useState('');
-    const genres = ['Action', 'Comedy', 'Drama', 'Horror', 'Sci-Fi']; // Add more genres as needed
-    const navigate = useNavigate();
-    const videoRef = useRef(null);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedGenre, setSelectedGenre] = useState("");
+  const genres = ["Action", "Comedy", "Drama", "Horror", "Sci-Fi"];
+  const navigate = useNavigate();
+  const videoRef = useRef(null);
 
-    useEffect(() => {
-        // Attempt to play video when component mounts
-        if (videoRef.current) {
-            const playVideo = async () => {
-                try {
-                    await videoRef.current.play();
-                } catch (error) {
-                    console.error("Video autoplay failed:", error);
-                }
-            };
-            playVideo();
+  useEffect(() => {
+    if (videoRef.current) {
+      const playVideo = async () => {
+        try {
+          await videoRef.current.play();
+        } catch (error) {
+          console.error("Video autoplay failed:", error);
         }
-    }, []);
+      };
+      playVideo();
+    }
+  }, []);
 
-    const handleSearch = () => {
-        if (searchTerm.trim()) {
-            navigate(`/search?query=${encodeURIComponent(searchTerm)}`);
-        }
-    };
+  const handleSearch = () => {
+    if (searchTerm.trim()) {
+      navigate(`/search?query=${encodeURIComponent(searchTerm)}&genre=${encodeURIComponent(selectedGenre)}`);
+    }
+  };
 
-    return (
-        <HeroContainer>
-            <VideoBackground
-                ref={videoRef}
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="auto"
-            >
-                <source src={garfieldVideo} type="video/mp4" />
-                Your browser does not support the video tag.
-            </VideoBackground>
+  return (
+    <HeroContainer>
+      <VideoBackground ref={videoRef} autoPlay loop muted playsInline preload="auto">
+        <source src="/cinema.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </VideoBackground>
 
-            <Overlay /> {/* Added overlay to improve text visibility */}
+      <Overlay />
 
-            <Content>
-                <Title>
-                    <Highlight>AppTech Movies</Highlight> <Moving>Your Gateway to Cinematic Adventures.</Moving>
-                </Title>
-
-      <Overlay /> {/* Added overlay to improve text visibility */}
-
-            <Content>
-                <Title>
-                    <Highlight>AppTech Movies</Highlight> <Moving>Your Gateway to Cinematic Adventures.</Moving>
-                </Title>
+      <Content>
+        <Title>
+          <Highlight>AppTech Movies</Highlight> <Moving>Your Gateway to Cinematic Adventures.</Moving>
+        </Title>
 
         <SearchBox>
           <input
@@ -66,66 +50,32 @@ const HeroSection = () => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-        
           <select 
-          
-          value={selectedGenre}
-           onChange={(e) => setSelectedGenre(e.target.value)}>
-           
-
-            <option value="genre">Select Genre</option>
+            className="select-genre"
+            value={selectedGenre} 
+            onChange={(e) => setSelectedGenre(e.target.value)}
+            style={{ borderRadius: "10px", color: "white", borderColor: "black", backgroundColor: "maroon" }}
+          >
+            <option value="">Select Genre</option>
             {genres.map((genre) => (
-              <option key={genre.id} value={genre.id}>
-                {genre.name}
+              <option key={genre} value={genre}>
+                {genre}
               </option>
-         
             ))}
-            </select>
-           
+          </select>
           <button onClick={handleSearch}>
             <Search />
           </button>
         </SearchBox>
+
+        <SearchResults searchTerm={searchTerm} selectedGenre={selectedGenre} />
       </Content>
     </HeroContainer>
   );
-                <SearchBox>
-                    <input
-                        type="text"
-                        placeholder="Search movies..."
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                    />
-                    <select 
-                    className="select-genre"
-                    value={selectedGenre} 
-                    onChange={(e) => setSelectedGenre(e.target.value)}
-                    style ={{borderRadius: '10px', color: 'white', borderColor: 'black' , backgroundColor: 'maroon'}}
-                    >
-                        <option value="">Select Genre</option>
-                        {genres.map((genre) => (
-                            <option key={genre} value={genre}>
-                                {genre}
-                            </option>
-                        ))}
-                    </select>
-                    <button onClick={handleSearch}>
-                        <Search />
-                    </button>
-                </SearchBox>
-            </Content>
-            <SearchResults searchTerm={searchTerm} selectedGenre={selectedGenre} />
-        </HeroContainer>
-    );
 };
 
 const SearchResults = ({ searchTerm, selectedGenre }) => {
-    // Implement the logic to display the filtered movies based on searchTerm and selectedGenre
-    return (
-        <div>
-            {/* Render the filtered movies here */}
-        </div>
-    );
+  return <div>{searchTerm || selectedGenre ? `Showing results for "${searchTerm}" in "${selectedGenre}"` : ""}</div>;
 };
 
 // Styled Components
@@ -137,7 +87,7 @@ const HeroContainer = styled.div`
   align-items: center;
   justify-content: center;
   color: white;
-  overflow: hidden; /* Prevent video from spilling out */
+  overflow: hidden;
 `;
 
 const VideoBackground = styled.video`
@@ -159,7 +109,7 @@ const Overlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+  background: rgba(0, 0, 0, 0.5);
   z-index: 1;
 `;
 
@@ -169,7 +119,7 @@ const Content = styled.div`
   max-width: 800px;
   width: 100%;
   margin: 0 auto;
-  z-index: 2; /* Ensure content is above overlay */
+  z-index: 2;
   position: relative;
 `;
 
@@ -177,7 +127,7 @@ const Title = styled.h1`
   font-size: clamp(2rem, 5vw, 3rem);
   line-height: 1.2;
   margin-bottom: 2rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Improve text readability */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 `;
 
 const Highlight = styled.span`

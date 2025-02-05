@@ -10,15 +10,11 @@ const HeroSearchSection = () => {
     const initialQuery = query.get('query') || '';
     const initialGenre = query.get('genreId') || ''; // Get genreId from the query params if present
     const [searchTerm, setSearchTerm] = useState(initialQuery);
-<<<<<<< HEAD
-    
-=======
-    const [selectedGenre, setSelectedGenre] = useState(initialGenre);
->>>>>>> e4b2b82fe3f26f941ec9404f61bd5b47ca0c4035
-    const [movies, setMovies] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
-    const [genres, setGenres] = useState([]); // Store genres list
+const [selectedGenre, setSelectedGenre] = useState(initialGenre);
+const [movies, setMovies] = useState([]);
+const [loading, setLoading] = useState(false);
+const [error, setError] = useState(null);
+const [genres, setGenres] = useState([]); // Store genres list
 
     const videoRef = useRef(null);
     const navigate = useNavigate();
