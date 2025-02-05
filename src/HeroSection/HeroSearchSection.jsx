@@ -1,35 +1,55 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { Search } from "lucide-react";
 
+const API_KEY = '81766caf381ea0e22e41bc9eeba2d8bb'; // Make sure to replace with your actual API key
 
 const HeroSearchSection = () => {
-    const [searchTerm, setSearchTerm] = useState("");
-  
+    const query = new URLSearchParams(useLocation().search);
+    const initialQuery = query.get('query') || '';
+    const [searchTerm, setSearchTerm] = useState(initialQuery);
+    const [movies, setMovies] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+
     const videoRef = useRef(null);
     const navigate = useNavigate();
     const searchResultsRef = useRef(null);
 
     useEffect(() => {
-        // Attempt to play video when component mounts
-        if (videoRef.current) {
-            const playVideo = async () => {
+        const playVideo = async () => {
+            if (videoRef.current) {
                 try {
                     await videoRef.current.play();
                 } catch (error) {
                     console.error("Video autoplay failed:", error);
                 }
-            };
-            playVideo();
-        }
-    }, []);
+            }
+        };
 
-    
+        const fetchMovies = async () => {
+            if (initialQuery) {
+                setLoading(true);
+                try {
+                    const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${initialQuery}`);
+                    const data = await response.json();
+                    setMovies(data.results);
+                } catch {
+                    setError("Failed to fetch movies. Please try again.");
+                } finally {
+                    setLoading(false);
+                }
+            }
+        };
+
+        playVideo();
+        fetchMovies();
+    }, [initialQuery]);
+
     const handleSearch = () => {
         if (searchTerm.trim()) {
             navigate(`/search?query=${encodeURIComponent(searchTerm)}`);
-         
         }
 
         // Scroll to search results
@@ -61,10 +81,11 @@ const HeroSearchSection = () => {
             <Overlay /> {/* Added overlay to improve text visibility */}
 
             <Content>
-                <Title>
+                {/* <Title>
                     <Highlight>AppTech Movies</Highlight> <Moving>Your Gateway to Cinematic Adventures.</Moving>
-                </Title>
-
+                </Title> */}
+                <h1>Search Results for: <span>{initialQuery}</span> </h1>
+                 <h2>Scroll Down to View Movies</h2>
                 <SearchBox>
                     <input
                         type="text"
@@ -77,11 +98,14 @@ const HeroSearchSection = () => {
                         <Search />
                     </button>
                 </SearchBox>
-             
+                {/* {loading && <p>Loading...</p>}
+                {error && <p>{error}</p>}
+                <div ref={searchResultsRef}>
+                    {movies.map(movie => (
+                        <div key={movie.id}>{movie.title}</div>
+                    ))}
+                </div> */}
             </Content>
-            <div ref={searchResultsRef}>
-                {/* Search results */}
-            </div>
         </HeroContainer>
     );
 };
