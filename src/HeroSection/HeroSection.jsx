@@ -66,14 +66,17 @@ const HeroSection = () => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
+        
           <select value={selectedGenre} onChange={(e) => setSelectedGenre(e.target.value)}>
-            <option value="">Select Genre</option>
+            <option value="genre">Select Genre</option>
             {genres.map((genre) => (
               <option key={genre.id} value={genre.id}>
                 {genre.name}
               </option>
+         
             ))}
-          </select>
+            </select>
+           
           <button onClick={handleSearch}>
             <Search />
           </button>
@@ -92,6 +95,9 @@ const HeroContainer = styled.div`
   justify-content: center;
   color: white;
   overflow: hidden; /* Prevent video from spilling out */
+`;
+const genre = styled.div`
+ 
 `;
 
 const VideoBackground = styled.video`

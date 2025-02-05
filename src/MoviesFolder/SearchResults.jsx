@@ -227,7 +227,7 @@ const Header = styled.div`
     &:hover {
       background:rgb(245, 135, 135);
     }
-  }
+   } 
 `;
 
 const Message = styled.p`

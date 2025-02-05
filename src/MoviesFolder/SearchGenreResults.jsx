@@ -276,6 +276,7 @@ const PopupButtons = styled.div`
   margin-top: 20px;
   display: flex;
   gap: 10px;
+ 
 `;
 
 const WatchButton = styled.button`
