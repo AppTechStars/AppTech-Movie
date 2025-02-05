@@ -128,39 +128,78 @@ const Container = styled.div`
   min-height: 100vh;
   color: white;
 `;
-const FooterContainer = styled.footer`
-    background-color:#924feb;
-    color: black;
-    padding: 20px 0;
-    text-align: center;
-    
-`;
-const SearchBox = styled.div`
+const MoviePopup = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  align-items: center;
+  z-index: 1000;
+`;
 
-  input {
-    padding: 10px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-right: 10px;
+const PopupContent = styled.div`
+  background: #2d2d2d;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 800px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+`;
+const CloseButton = styled.button`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+`;
+
+const PopupImage = styled.img`
+  width: 200px;
+  border-radius: 5px;
+  float: left;
+  margin-right: 20px;
+`;
+const PopupInfo = styled.div`
+  overflow: hidden;
+
+  h3 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
   }
 
-  button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 5px;
-    background-color: #e70101;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.2s;
+  p {
+    margin: 10px 0;
+    line-height: 1.6;
+  }
+`;
 
-    &:hover {
-      background-color: #f58787;
-    }
+const PopupButtons = styled.div`
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+`;
+
+const WatchButton = styled.button`
+  background: #e50914;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s;
+
+  &:hover {
+    background: #f40612;
   }
 `;
 
