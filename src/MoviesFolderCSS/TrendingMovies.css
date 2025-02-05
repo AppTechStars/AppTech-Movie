@@ -258,8 +258,8 @@
   position: relative;
   color: #e8ecf0;
 }
-movie-popup {
-  position: fixed;
+.movie-popup {
+  position: center;
   padding-top: 20px;
   bottom: 700px; 
   left: 0;
