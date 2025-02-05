@@ -6,6 +6,8 @@ import garfieldVideo from '/public/cinema.mp4'; // Import the video file
 
 const HeroSection = () => {
     const [searchTerm, setSearchTerm] = useState("");
+    const [selectedGenre, setSelectedGenre] = useState('');
+    const genres = ['Action', 'Comedy', 'Drama', 'Horror', 'Sci-Fi']; // Add more genres as needed
     const navigate = useNavigate();
     const videoRef = useRef(null);
 
@@ -57,12 +59,30 @@ const HeroSection = () => {
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                     />
+                    <select value={selectedGenre} onChange={(e) => setSelectedGenre(e.target.value)}>
+                        <option value="">Select Genre</option>
+                        {genres.map((genre) => (
+                            <option key={genre} value={genre}>
+                                {genre}
+                            </option>
+                        ))}
+                    </select>
                     <button onClick={handleSearch}>
                         <Search />
                     </button>
                 </SearchBox>
             </Content>
+            <SearchResults searchTerm={searchTerm} selectedGenre={selectedGenre} />
         </HeroContainer>
+    );
+};
+
+const SearchResults = ({ searchTerm, selectedGenre }) => {
+    // Implement the logic to display the filtered movies based on searchTerm and selectedGenre
+    return (
+        <div>
+            {/* Render the filtered movies here */}
+        </div>
     );
 };
 
