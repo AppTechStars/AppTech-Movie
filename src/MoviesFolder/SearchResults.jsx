@@ -212,7 +212,7 @@ const Header = styled.div`
   h1 {
     font-size: 1.8rem;
     span {
-      color:rgb(247, 34, 34);
+      color:rgb(236, 32, 32);
     }
   }
 
