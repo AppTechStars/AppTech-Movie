@@ -237,7 +237,7 @@
   background: #3378c7; 
   padding: 20px;
   border-radius: 10px;
-  max-width: 600px;
+  max-width: 500px;
   width: 90%;
   text-align: center;
   position: relative;
@@ -278,6 +278,7 @@
 .movie-popup button:hover {
   background: #f07d90;
 }
+
 
 
 /* Responsive updates */
