@@ -243,6 +243,17 @@
   position: relative;
   color: #e8ecf0;
 }
+@media (max-width: 768px) {
+.movie-popup-content {
+  background: #3378c7; 
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 500px;
+  width: 80%;
+  text-align: center;
+  position: relative;
+  color: #e8ecf0;
+}}
 
 .close-popup {
   position: absolute;
