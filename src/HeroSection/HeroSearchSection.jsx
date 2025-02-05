@@ -9,6 +9,7 @@ const HeroSearchSection = () => {
     const query = new URLSearchParams(useLocation().search);
     const initialQuery = query.get('query') || '';
     const [searchTerm, setSearchTerm] = useState(initialQuery);
+    
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);

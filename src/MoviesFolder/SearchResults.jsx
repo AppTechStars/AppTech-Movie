@@ -134,7 +134,7 @@ const MoviePopup = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(12, 12, 12, 0.8);
+  background: rgba(0, 0, 0, 0.8);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -155,10 +155,10 @@ const CloseButton = styled.button`
   position: absolute;
   top: 10px;
   right: 10px;
-  background: red;
+  background: none;
   border: none;
   color: white;
-  font-size: 100%;
+  font-size: 1.5rem;
   cursor: pointer;
 `;
 
@@ -199,7 +199,7 @@ const WatchButton = styled.button`
   transition: background 0.2s;
 
   &:hover {
-    background:rgb(243, 9, 21);
+    background: #f40612;
   }
 `;
 
@@ -212,7 +212,7 @@ const Header = styled.div`
   h1 {
     font-size: 1.8rem;
     span {
-      color:rgb(236, 32, 32);
+      color:rgb(247, 34, 34);
     }
   }
 

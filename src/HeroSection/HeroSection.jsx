@@ -67,7 +67,12 @@ const HeroSection = () => {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         
-          <select value={selectedGenre} onChange={(e) => setSelectedGenre(e.target.value)}>
+          <select 
+          
+          value={selectedGenre}
+           onChange={(e) => setSelectedGenre(e.target.value)}>
+           
+
             <option value="genre">Select Genre</option>
             {genres.map((genre) => (
               <option key={genre.id} value={genre.id}>
