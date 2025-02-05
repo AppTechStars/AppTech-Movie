@@ -25,7 +25,7 @@ A **React-based** movie website that fetches and displays trending movies using 
 
 1️⃣ **Clone the repository:**
 ```sh
- git clone https://github.com/your-username/movie-website.git
+ git clone https://github.com/AppTechStars/AppTech-Movie.git
  cd movie-website
 ```
 
