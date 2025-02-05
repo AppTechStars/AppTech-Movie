@@ -199,7 +199,7 @@ const WatchButton = styled.button`
   transition: background 0.2s;
 
   &:hover {
-    background: #f40612;
+    background:rgb(243, 9, 21);
   }
 `;
 
