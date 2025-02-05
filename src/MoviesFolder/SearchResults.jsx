@@ -89,25 +89,34 @@ const SearchResults = () => {
             </MovieGrid>
 
             {hoveredMovie && movieDetails && (
-                <div className="movie-popup">
-                    <div className="movie-popup-content">
-                        <button className="close-popup" onClick={() => setHoveredMovie(null)}>X</button>
-                        <img
+                <MoviePopup>
+                    <PopupContent>
+                        <CloseButton onClick={() => setHoveredMovie(null)}>✕</CloseButton>
+                        <PopupImage
                             src={`https://image.tmdb.org/t/p/original${movieDetails.poster_path}`}
                             alt={movieDetails.title}
-                            className="popup-movie-poster"
                         />
-                        <h3>{movieDetails.title}</h3>
-                        <p>{movieDetails.overview}</p>
-                        <p>Director: {movieDetails.credits.crew.find(member => member.job === 'Director').name}</p>
-                        <p>Cast: {movieDetails.credits.cast.slice(0, 5).map(actor => actor.name).join(', ')}</p>
-                        <button onClick={() => window.open(`https://www.youtube.com/watch?v=${movieDetails.videos.results[0].key}`, '_blank')}>Watch Trailer</button>
-                        <button onClick={() => window.open(`https://api.example.com/download?videoId=${movieDetails.videos.results[0].key}`, '_blank')}>Download</button>
-                    </div>
-                </div>
+                        <PopupInfo>
+                            <h3>{movieDetails.title}</h3>
+                            <p>{movieDetails.overview}</p>
+                            {movieDetails.credits?.crew && (
+                                <p>Director: {movieDetails.credits.crew.find(member => member.job === 'Director')?.name || 'N/A'}</p>
+                            )}
+                            {movieDetails.credits?.cast && (
+                                <p>Cast: {movieDetails.credits.cast.slice(0, 5).map(actor => actor.name).join(', ')}</p>
+                            )}
+                            {movieDetails.videos?.results[0] && (
+                                <PopupButtons>
+                                    <WatchButton onClick={() => window.open(`https://www.youtube.com/watch?v=${movieDetails.videos.results[0].key}`, '_blank')}>
+                                        Watch Trailer
+                                    </WatchButton>
+                                </PopupButtons>
+                            )}
+                        </PopupInfo>
+                    </PopupContent>
+                </MoviePopup>
             )}
-            <br />
-             <Footer/>
+            <Footer/>
         </Container>
     );
 };
