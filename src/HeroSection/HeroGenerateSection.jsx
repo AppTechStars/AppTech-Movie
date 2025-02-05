@@ -101,7 +101,7 @@ const HeroGenerateSection = () => {
                 playsInline
                 preload="auto"
             >
-                <source src="/Spiderverse-Video.mp4" type="video/mp4" />
+                <source src="/Venom-HeroSection.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
             </VideoBackground>
 
