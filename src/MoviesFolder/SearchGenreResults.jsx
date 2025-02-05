@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link, useLocation } from 'react-router-dom';
 import Footer from '../Footer/Footer';
-import HeroSearchSection from '../HeroSection/HeroSearchSection';
+import HeroGenerateSection from '../HeroSection/HeroGenerateSection';
 
 const API_KEY = "81766caf381ea0e22e41bc9eeba2d8bb";
 
@@ -62,7 +62,7 @@ const SearchGenreResults = () => {
 
     return (
         <Container>
-            <HeroSearchSection />
+            <HeroGenerateSection />
             
             <Header>
                 <h1>Movies in <span>{genreName || 'Genre'} Genre</span> </h1>
