@@ -6,7 +6,7 @@ A **React-based** movie website that fetches and displays trending movies using 
 
 - 🔍 **Search for Movies** – Find movies by title.
 - 📌 **Trending Movies Section** – Displays the most popular movies.
-- 🎭 **Movie Details Page** – View detailed movie information.
+- 🎭 **Movie Popup** – View detailed movie information.
 - 📱 **Fully Responsive** – Works on mobile, tablet, and desktop.
 - 🌙 **Modern UI Design** – Styled using CSS & Styled Components.
 - 🎬 **TMDB API Integration** – Fetches real-time movie data.
