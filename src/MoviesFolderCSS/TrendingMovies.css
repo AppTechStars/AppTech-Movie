@@ -221,16 +221,17 @@
 
 .movie-popup {
   position: fixed;
-  padding-top: 20px;
-  top: 300px; 
-  left: 0;
-  width: 100%;
-  height: 20%;
- 
+  top: 50%; /* Centering vertically */
+  left: 50%; /* Centering horizontally */
+  transform: translate(-50%, -50%); /* Perfect centering */
+  width: 90%; /* Ensures the popup is responsive */
+  max-width: 800px; /* Maximum width for large screens */
+  height: auto; /* Adjust height based on content */
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  padding: 20px;
 }
 
 .movie-popup-content {
@@ -243,17 +244,68 @@
   position: relative;
   color: #e8ecf0;
 }
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
 .movie-popup-content {
   background: #3378c7; 
   padding: 20px;
   border-radius: 10px;
   max-width: 500px;
   width: 80%;
+  max-height: 700px;
   text-align: center;
   position: relative;
   color: #e8ecf0;
+}
+movie-popup {
+  position: fixed;
+  padding-top: 20px;
+  top: 300px; 
+  left: 0;
+  width: 100%;
+  height: 20%;
+ 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.close-popup {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.popup-movie-poster {
+  width: 40%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.movie-popup h3 {
+  margin-top: 0;
+}
+
+.movie-popup button {
+  margin: 10px;
+  padding: 10px 20px;
+  border: none;
+  background: #d6232c;
+  color: #0c0a0a;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-bottom: 100px;
+}
+
+.movie-popup button:hover {
+  background: #f07d90;
 }}
+
+
 
 .close-popup {
   position: absolute;
