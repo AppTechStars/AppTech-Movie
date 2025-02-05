@@ -1,70 +1,184 @@
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import { Link, useLocation } from 'react-router-dom';
+import Footer from '../Footer/Footer';
+import HeroSearchSection from '../HeroSection/HeroSearchSection';
 
-const PageContainer = styled.div`
+const API_KEY = "81766caf381ea0e22e41bc9eeba2d8bb";
+
+const SearchGenreResults = () => {
+    const [movies, setMovies] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState('');
+    const [hoveredMovie, setHoveredMovie] = useState(null);
+    const [movieDetails, setMovieDetails] = useState(null);
+    const [genreName, setGenreName] = useState('');
+    
+    const location = useLocation();
+    const genreId = new URLSearchParams(location.search).get('genreId');
+
+    useEffect(() => {
+        const fetchGenreName = async () => {
+            try {
+                const response = await fetch(
+                    `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=en-US`
+                );
+                const data = await response.json();
+                const genre = data.genres.find(g => g.id.toString() === genreId);
+                if (genre) {
+                    setGenreName(genre.name);
+                }
+            } catch (err) {
+                console.error("Failed to fetch genre name:", err);
+            }
+        };
+
+        if (genreId) {
+            fetchGenreName();
+            setLoading(true);
+            fetch(`https://api.themoviedb.org/3/discover/movie?with_genres=${genreId}&api_key=${API_KEY}`)
+                .then(response => response.json())
+                .then(data => {
+                    setMovies(data.results);
+                    setLoading(false);
+                })
+                .catch(() => {
+                    setError("Failed to fetch movies. Please try again.");
+                    setLoading(false);
+                });
+        }
+    }, [genreId]);
+
+    const fetchMovieDetails = async (movieId) => {
+        const url = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&append_to_response=credits,videos`;
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+            setMovieDetails(data);
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
+    return (
+        <Container>
+            <HeroSearchSection />
+            
+            <Header>
+                <h1>Movies in <span>{genreName || 'Genre'} Genre</span> </h1>
+                <Link to="/">Go Back</Link>
+            </Header>
+
+            {loading && <Message>Loading movies...</Message>}
+            {error && <Message>{error}</Message>}
+
+            <MovieGrid>
+                {movies.map((movie) => (
+                    <MovieCard key={movie.id} onClick={() => {
+                        setHoveredMovie(movie);
+                        fetchMovieDetails(movie.id);
+                    }}>
+                        <MovieImage
+                            src={movie.poster_path 
+                                ? `https://image.tmdb.org/t/p/w300${movie.poster_path}` 
+                                : "https://via.placeholder.com/200x300"}
+                            alt={movie.title}  
+                        />
+                        <MovieInfo>
+                            <MovieTitle>{movie.title}</MovieTitle>
+                            <ReleaseDate>{new Date(movie.release_date).getFullYear()}</ReleaseDate>
+                            <Rating>⭐ {movie.vote_average.toFixed(1)}</Rating>
+                        </MovieInfo>
+                    </MovieCard>
+                ))}
+            </MovieGrid>
+
+            {hoveredMovie && movieDetails && (
+                <MoviePopup>
+                    <PopupContent>
+                        <CloseButton onClick={() => setHoveredMovie(null)}>✕</CloseButton>
+                        <PopupImage
+                            src={`https://image.tmdb.org/t/p/original${movieDetails.poster_path}`}
+                            alt={movieDetails.title}
+                        />
+                        <PopupInfo>
+                            <h3>{movieDetails.title}</h3>
+                            <p>{movieDetails.overview}</p>
+                            {movieDetails.credits?.crew && (
+                                <p>Director: {movieDetails.credits.crew.find(member => member.job === 'Director')?.name || 'N/A'}</p>
+                            )}
+                            {movieDetails.credits?.cast && (
+                                <p>Cast: {movieDetails.credits.cast.slice(0, 5).map(actor => actor.name).join(', ')}</p>
+                            )}
+                            {movieDetails.videos?.results[0] && (
+                                <PopupButtons>
+                                    <WatchButton onClick={() => window.open(`https://www.youtube.com/watch?v=${movieDetails.videos.results[0].key}`, '_blank')}>
+                                        Watch Trailer
+                                    </WatchButton>
+                                </PopupButtons>
+                            )}
+                        </PopupInfo>
+                    </PopupContent>
+                </MoviePopup>
+            )}
+            <Footer/>
+        </Container>
+    );
+};
+
+// Styled Components
+const Container = styled.div`
+  padding: 20px;
+  background-color: #4e69c3;
   min-height: 100vh;
-  background-color: #1a1a1a;
   color: white;
 `;
 
-const Header = styled.header`
-  background-color: #2d2d2d;
-  padding: 1.5rem 0;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-`;
-
-const HeaderContent = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
+const Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-`;
+  padding: 10px 0;
 
-const Title = styled.h1`
-  font-size: 1.5rem;
-  font-weight: bold;
-  
-  span {
-    color: #e50914;
+  h1 {
+    font-size: 1.8rem;
+    span {
+      color: rgb(247, 34, 34);
+    }
+  }
+
+  a {
+    text-decoration: none;
+    color: white;
+    background: rgb(231, 1, 1);
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: 0.2s;
+    
+    &:hover {
+      background: rgb(245, 135, 135);
+    }
   }
 `;
 
-const BackButton = styled.button`
-  background-color: #e50914;
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.2s;
-
-  &:hover {
-    background-color: #f40612;
-  }
-`;
-
-const MainContent = styled.main`
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem 1rem;
+const Message = styled.p`
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 20px;
 `;
 
 const MovieGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 1.5rem;
-  
-  @media (max-width: 640px) {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  }
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
 `;
 
 const MovieCard = styled.div`
-  background-color: #2d2d2d;
-  border-radius: 0.5rem;
-  overflow: hidden;
+  background: black;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
   transition: transform 0.2s;
 
   &:hover {
@@ -74,141 +188,108 @@ const MovieCard = styled.div`
 
 const MovieImage = styled.img`
   width: 100%;
-  height: 200px;
+  height: 300px;
+  border-radius: 5px;
   object-fit: cover;
 `;
 
 const MovieInfo = styled.div`
-  padding: 1rem;
+  padding: 10px;
+  text-align: center;
 `;
 
-const MovieTitle = styled.h2`
-  font-size: 1.1rem;
-  margin-bottom: 0.5rem;
+const MovieTitle = styled.h3`
+  font-size: 1rem;
+  margin: 10px 0 5px;
 `;
 
-const MovieOverview = styled.p`
+const ReleaseDate = styled.p`
   font-size: 0.9rem;
-  color: #cccccc;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  color: #888;
+  margin: 5px 0;
 `;
 
-const LoadingContainer = styled.div`
+const Rating = styled.p`
+  font-size: 0.9rem;
+  color: #ffd700;
+  margin: 5px 0;
+`;
+
+const MoviePopup = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50vh;
-  font-size: 1.2rem;
+  z-index: 1000;
 `;
 
-const ErrorContainer = styled(LoadingContainer)`
-  color: #e50914;
+const PopupContent = styled.div`
+  background: #2d2d2d;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 800px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
 `;
 
-const SearchGenreResults = () => {
-  const [movies, setMovies] = useState([]);
-  const [images, setImages] = useState({});
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+const CloseButton = styled.button`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+`;
 
-  // Simulate URL params for demo
-  const genreId = "28"; // Action movies
+const PopupImage = styled.img`
+  width: 200px;
+  border-radius: 5px;
+  float: left;
+  margin-right: 20px;
+`;
 
-  useEffect(() => {
-    const fetchMoviesByGenre = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch(
-          `https://api.themoviedb.org/3/discover/movie?with_genres=${genreId}&api_key=81766caf381ea0e22e41bc9eeba2d8bb`
-        );
-        const data = await response.json();
-        setMovies(data.results);
+const PopupInfo = styled.div`
+  overflow: hidden;
 
-        // Fetch images for each movie
-        const imagePromises = data.results.map(async (movie) => {
-          const imageResponse = await fetch(
-            `https://api.themoviedb.org/3/movie/${movie.id}/images?api_key=81766caf381ea0e22e41bc9eeba2d8bb`
-          );
-          const imageData = await imageResponse.json();
-          return {
-            id: movie.id,
-            path: imageData.backdrops[0]?.file_path || null,
-          };
-        });
-
-        const imageResults = await Promise.all(imagePromises);
-        const newImages = {};
-        imageResults.forEach((result) => {
-          newImages[result.id] = result.path;
-        });
-        setImages(newImages);
-      } catch (err) {
-        setError("Failed to fetch movies. Please try again later.");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    if (genreId) {
-      fetchMoviesByGenre();
-    }
-  }, [genreId]);
-
-  if (loading) {
-    return (
-      <PageContainer>
-        <LoadingContainer>Loading movies...</LoadingContainer>
-      </PageContainer>
-    );
+  h3 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
   }
 
-  if (error) {
-    return (
-      <PageContainer>
-        <ErrorContainer>{error}</ErrorContainer>
-      </PageContainer>
-    );
+  p {
+    margin: 10px 0;
+    line-height: 1.6;
   }
+`;
 
-  return (
-    <PageContainer>
-      <Header>
-        <HeaderContent>
-          <Title>
-            Movies in <span>Genre</span>
-          </Title>
-          <BackButton>Back to Genres</BackButton>
-        </HeaderContent>
-      </Header>
+const PopupButtons = styled.div`
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+`;
 
-      <MainContent>
-        <MovieGrid>
-          {movies.map((movie) => (
-            <MovieCard key={movie.id}>
-              {images[movie.id] ? (
-                <MovieImage
-                  src={`https://image.tmdb.org/t/p/w500${images[movie.id]}`}
-                  alt={movie.title}
-                />
-              ) : (
-                <MovieImage
-                  src="/api/placeholder/400/320"
-                  alt="No image available"
-                />
-              )}
-              <MovieInfo>
-                <MovieTitle>{movie.title}</MovieTitle>
-                <MovieOverview>{movie.overview}</MovieOverview>
-              </MovieInfo>
-            </MovieCard>
-          ))}
-        </MovieGrid>
-      </MainContent>
-    </PageContainer>
-  );
-};
+const WatchButton = styled.button`
+  background: #e50914;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s;
+
+  &:hover {
+    background: #f40612;
+  }
+`;
 
 export default SearchGenreResults;
