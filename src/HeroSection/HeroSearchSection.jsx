@@ -98,7 +98,7 @@ const HeroSearchSection = () => {
             <Overlay /> {/* Added overlay to improve text visibility */}
 
             <Content>
-                <h1>Search Results for: <span>{initialQuery}</span> </h1>
+                <h1>Search Results for: <span>{initialQuery} </span> Movie</h1>
              
                 <SearchBox>
                     <input
