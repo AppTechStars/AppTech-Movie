@@ -5,6 +5,7 @@ import HeroSection from './HeroSection/HeroSection';
 import TrendingMovies from './MoviesFolder/TrendingMovies';
 import Navbar from './Navbar/NavBar';
 import SearchResults from './MoviesFolder/SearchResults';
+import GenreResults from './MoviesFolder/SearchGenreResults';
 import Footer from './Footer/Footer';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
             </>
           } />
           <Route path="/search" element={<SearchResults />} />
+          <Route path="/genre" element={<GenreResults />} />
         
         </Routes>
        
