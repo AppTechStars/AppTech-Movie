@@ -85,7 +85,7 @@ const HeroSearchSection = () => {
                     <Highlight>AppTech Movies</Highlight> <Moving>Your Gateway to Cinematic Adventures.</Moving>
                 </Title> */}
                 <h1>Search Results for: <span>{initialQuery}</span> </h1>
-                 <h2>Scroll Down to View Movies</h2>
+             
                 <SearchBox>
                     <input
                         type="text"
@@ -105,6 +105,7 @@ const HeroSearchSection = () => {
                         <div key={movie.id}>{movie.title}</div>
                     ))}
                 </div> */}
+                    <h2>Scroll Down to View Movies</h2>
             </Content>
         </HeroContainer>
     );
