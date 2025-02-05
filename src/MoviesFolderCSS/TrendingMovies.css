@@ -226,7 +226,7 @@
   transform: translate(-50%, -50%); /* Perfect centering */
   width: 90%; /* Ensures the popup is responsive */
   max-width: 800px; /* Maximum width for large screens */
-  height: auto; /* Adjust height based on content */
+  height: auto; 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -235,15 +235,17 @@
 }
 
 .movie-popup-content {
-  background: #3378c7; 
+  background: #3378c7;
   padding: 20px;
   border-radius: 10px;
-  max-width: 500px;
-  width: 80%;
+  width: 100%; /* Full width for responsiveness */
+  max-width: 800px; /* Limit to prevent overflow */
   text-align: center;
-  position: relative;
   color: #e8ecf0;
+  box-sizing: border-box; /* Prevents padding from breaking layout */
+  position: relative;
 }
+
 @media (max-width: 1024px) {
 .movie-popup-content {
   background: #3378c7; 
