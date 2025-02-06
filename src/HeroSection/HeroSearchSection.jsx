@@ -15,8 +15,8 @@ const [movies, setMovies] = useState([]);
 const [loading, setLoading] = useState(false);
 const [error, setError] = useState(null);
 const [genres, setGenres] = useState([]); // Store genres list
-
     const videoRef = useRef(null);
+    const [isHovered, setIsHovered] = useState(false);
     const navigate = useNavigate();
     const searchResultsRef = useRef(null);
 
@@ -111,6 +111,9 @@ const [genres, setGenres] = useState([]); // Store genres list
                     <select
                         value={selectedGenre}
                         onChange={(e) => setSelectedGenre(e.target.value)}
+                        onMouseEnter={() => setIsHovered(true)}
+                        onMouseLeave={() => setIsHovered(false)}
+                        style={{ borderRadius: '10px', color: 'white', borderColor: 'blue', backgroundColor: 'black' , fontSize: '14px' , width: '10px' , height: '50px',  backgroundColor: isHovered ? 'chocolate' : 'black', }}
                     >
                         <option value="">Select Genre</option>
                         {genres.map((genre) => (
