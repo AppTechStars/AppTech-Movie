@@ -17,8 +17,8 @@ const HeroGenerateSection = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [genreName, setGenreName] = useState('');
-
     const videoRef = useRef(null);
+    const [isHovered, setIsHovered] = useState(false);
     const navigate = useNavigate();
     const searchResultsRef = useRef(null);
 
@@ -137,6 +137,9 @@ const HeroGenerateSection = () => {
                     <select 
                         value={selectedGenre} 
                         onChange={(e) => setSelectedGenre(e.target.value)}
+                        onMouseEnter={() => setIsHovered(true)}
+                        onMouseLeave={() => setIsHovered(false)}
+                        style={{ borderRadius: '10px', color: 'white', borderColor: 'blue', backgroundColor: 'black' , fontSize: '14px' , width: '10px' , height: '50px',  backgroundColor: isHovered ? 'chocolate' : 'black', }}
                     >
                         <option value="">Select Genre</option>
                         {genres.map((genre) => (

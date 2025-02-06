@@ -11,7 +11,7 @@ const HeroSection = () => {
   const [genres, setGenres] = useState([]);
   const navigate = useNavigate();
   const videoRef = useRef(null);
- 
+  const [isHovered, setIsHovered] = useState(false);
   useEffect(() => {
     // Fetch the genre list from TMDB API
     const fetchGenres = async () => {
@@ -71,7 +71,9 @@ const HeroSection = () => {
             className="select-genre"
             value={selectedGenre}
             onChange={(e) => setSelectedGenre(e.target.value)}
-            style={{ borderRadius: '10px', color: 'white', borderColor: 'blue', backgroundColor: 'black' }}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            style={{ borderRadius: '10px', color: 'white', borderColor: 'blue', backgroundColor: 'black' , fontSize: '14px',   backgroundColor: isHovered ? 'chocolate' : 'black', }}
           >
             <option value="">Select Genre</option>
             {genres.map((genre) => (
@@ -88,7 +90,7 @@ const HeroSection = () => {
     </HeroContainer>
   );
 };
- 
+
 const HeroContainer = styled.div`
   min-height: 60vh;
   padding: 120px 20px;
