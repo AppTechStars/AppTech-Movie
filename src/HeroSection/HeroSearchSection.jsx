@@ -10,13 +10,13 @@ const HeroSearchSection = () => {
     const initialQuery = query.get('query') || '';
     const initialGenre = query.get('genreId') || ''; // Get genreId from the query params if present
     const [searchTerm, setSearchTerm] = useState(initialQuery);
-    const [selectedGenre, setSelectedGenre] = useState(initialGenre);
-    const [movies, setMovies] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
-    const [genres, setGenres] = useState([]); // Store genres list
-
+const [selectedGenre, setSelectedGenre] = useState(initialGenre);
+const [movies, setMovies] = useState([]);
+const [loading, setLoading] = useState(false);
+const [error, setError] = useState(null);
+const [genres, setGenres] = useState([]); // Store genres list
     const videoRef = useRef(null);
+    const [isHovered, setIsHovered] = useState(false);
     const navigate = useNavigate();
     const searchResultsRef = useRef(null);
     const searchGenreResults = useRef(null);
@@ -111,6 +111,9 @@ const HeroSearchSection = () => {
                     <select
                         value={selectedGenre}
                         onChange={(e) => setSelectedGenre(e.target.value)}
+                        onMouseEnter={() => setIsHovered(true)}
+                        onMouseLeave={() => setIsHovered(false)}
+                        style={{ borderRadius: '10px', color: 'white', borderColor: 'blue', backgroundColor: 'black' , fontSize: '14px' , width: '10px' , height: '50px',  backgroundColor: isHovered ? 'chocolate' : 'black', }}
                     >
                         <option value="">Select Genre</option>
                         {genres.map((genre) => (
