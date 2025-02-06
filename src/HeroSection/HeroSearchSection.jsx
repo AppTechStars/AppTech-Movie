@@ -10,15 +10,16 @@ const HeroSearchSection = () => {
     const initialQuery = query.get('query') || '';
     const initialGenre = query.get('genreId') || ''; // Get genreId from the query params if present
     const [searchTerm, setSearchTerm] = useState(initialQuery);
-const [selectedGenre, setSelectedGenre] = useState(initialGenre);
-const [movies, setMovies] = useState([]);
-const [loading, setLoading] = useState(false);
-const [error, setError] = useState(null);
-const [genres, setGenres] = useState([]); // Store genres list
+    const [selectedGenre, setSelectedGenre] = useState(initialGenre);
+    const [movies, setMovies] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+    const [genres, setGenres] = useState([]); // Store genres list
 
     const videoRef = useRef(null);
     const navigate = useNavigate();
     const searchResultsRef = useRef(null);
+    const searchGenreResults = useRef(null);
 
     // Fetch genres list
     useEffect(() => {
@@ -40,15 +41,11 @@ const [genres, setGenres] = useState([]); // Store genres list
     // Fetch movies based on the query and selected genre
     useEffect(() => {
         const fetchMovies = async () => {
-            if (initialQuery || selectedGenre) {
+            if (searchTerm || selectedGenre) {
                 setLoading(true);
+                setError(null);
                 try {
-                    let url = '';
-                    if (selectedGenre) {
-                        url = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=${selectedGenre}`;
-                    } else if (initialQuery) {
-                        url = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${initialQuery}`;
-                    }
+                    const url = `https://api.example.com/movies?query=${searchTerm}&genre=${selectedGenre}`;
                     const response = await fetch(url);
                     const data = await response.json();
                     setMovies(data.results);
@@ -61,12 +58,15 @@ const [genres, setGenres] = useState([]); // Store genres list
         };
 
         fetchMovies();
-    }, [initialQuery, selectedGenre]);
+    }, [searchTerm, selectedGenre]);
 
     const handleSearch = () => {
         // Navigate to the search page with query params
         if (searchTerm.trim()) {
-            navigate(`/search?query=${encodeURIComponent(searchTerm)}&genreId=${selectedGenre}`);
+            navigate(`/search?query=${encodeURIComponent(searchTerm)}`);
+        } 
+        if (selectedGenre) {   
+            navigate(`/genre?genreId=${selectedGenre}`);  
         }
 
         // Scroll to search results
@@ -99,7 +99,7 @@ const [genres, setGenres] = useState([]); // Store genres list
 
             <Content>
                 <h1>Search Results for: <span>{initialQuery} </span> Movie</h1>
-             
+
                 <SearchBox>
                     <input
                         type="text"
@@ -123,9 +123,6 @@ const [genres, setGenres] = useState([]); // Store genres list
                         <Search />
                     </button>
                 </SearchBox>
-
-                
-               
 
                 <h2>Scroll Down to View Movies</h2>
             </Content>
@@ -189,7 +186,7 @@ const SearchBox = styled.div`
     font-size: 1rem;
     border: 1px solid #ccc;
     border-radius: 5px;
-    
+
     &:focus {
       outline: none;
       border-color: #007bff;
@@ -221,7 +218,7 @@ const SearchBox = styled.div`
     border-radius: 5px;
     cursor: pointer;
     transition: 0.2s;
-    
+
     &:hover {
       background: #333;
     }

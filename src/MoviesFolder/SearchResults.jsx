@@ -13,7 +13,9 @@ const useQuery = () => {
 
 const SearchResults = () => {
     const query = useQuery();
+
     const initialQuery = query.get('query') || '';
+
     const [searchTerm, setSearchTerm] = useState(initialQuery);
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(false);
