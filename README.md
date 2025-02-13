@@ -1,4 +1,4 @@
-# 🎬 Movie Website
+# 🎬 AppTechStars Movie Hub
 
 A **React-based** movie website that fetches and displays trending movies using the **TMDB API**. Users can browse the latest movies, view movie details, and navigate through a user-friendly interface.
 
